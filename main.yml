@@ -13,7 +13,7 @@
       shell: docker kill $(docker ps -q)
 
     - name: start backend container
-      community.docker.docker_container:
+      community.docker.docker_image:
         name: backend
         image: test:{{ version }}
         env:
