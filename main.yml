@@ -1,0 +1,14 @@
+- hosts: all
+  tasks:
+
+    - name: Hello World Sample
+        hosts: all
+        tasks:
+          - name: Example clone of a single branch
+            ansible.builtin.git:
+              repo: "{{ scm_url }}"
+              dest: "{{ project_path }}"
+              version: main
+
+    - name: Build container
+      shell: docker build -t test:1.0 .
