@@ -18,6 +18,6 @@
         image: test:{{ version }}
         env:
           TEST: "1234"
-        state: started
+        state: present
         ports:
           - "3000:3000"
