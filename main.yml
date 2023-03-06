@@ -8,3 +8,6 @@
 
     - name: Build container
       shell: cd "{{ project_path }}" &&  docker build -t test:1.0 .
+
+    - name: Start container
+      shell: cd "{{ project_path }}" &&  docker run -dp 3000:3000 test:1.0
