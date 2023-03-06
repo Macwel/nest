@@ -10,7 +10,7 @@
       shell: cd "{{ project_path }}" &&  docker build -t test:"{{ version }}" .
 
     - name: Stop and remove old container
-          docker_container:
+          community.docker.docker_container:
             name: backend
             state: '{{ item }}'
           with_items:
