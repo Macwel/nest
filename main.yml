@@ -8,6 +8,7 @@
 
     - name: Build container
       shell: cd "{{ project_path }}" &&  docker build -t test:"{{ version }}" .
+      ignore_errors: yes
 
     - name: Stop and remove old container
       shell: docker kill $(docker ps -q)
