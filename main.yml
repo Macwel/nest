@@ -5,9 +5,17 @@
           repo: "{{ scm_url }}"
           dest: "{{ project_path }}"
           version: main
+    - name: Stop and remove old container
+      docker_container:
+        name: test
+        state: '{{ item }}'
+      with_items:
+        - stopped
+        - absent
+      ignore_errors: yes
 
     - name: Build container
-      shell: cd "{{ project_path }}" &&  docker build -t test:"{{version}}" .
+      shell: cd "{{ project_path }}" &&  docker build -t test:"{{ version }}" .
 
     - name: Start container
-      shell: cd "{{ project_path }}" &&  docker run -dp 3000:3000 test:1.0
+      shell: cd "{{ project_path }}" &&  docker run -dp 3000:3000 test:"{{ version }}"
