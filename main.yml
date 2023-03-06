@@ -13,10 +13,10 @@
       shell: docker kill $(docker ps -q)
 
     - docker_container:
-      name: backend
-      image: test:{{ version }}
-      env:
-        TEST: "1234"
-      state: started
-      ports:
-        - "3000:3000"
+        name: backend
+        image: test:{{ version }}
+        env:
+          TEST: "1234"
+        state: started
+        ports:
+          - "3000:3000"
