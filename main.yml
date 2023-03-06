@@ -6,8 +6,14 @@
           dest: "{{ project_path }}"
           version: main
 
-    - name: Build container
-      shell: cd "{{ project_path }}" &&  docker build -t test:"{{ version }}" .
+    - name: Build an image and push it to a private repo
+      community.docker.docker_image:
+        build:
+          path: "{{ project_path }}"
+        name: test
+        tag: "{{ version }}"
+        push: true
+        source: local
 
     - community.docker.docker_container:
         name: backend
