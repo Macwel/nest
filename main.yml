@@ -12,12 +12,11 @@
     - name: Stop and remove old container
       shell: docker kill $(docker ps -q)
 
-    - name: start backend container
-      community.general.docker_image:
-        name: backend
-        image: test:{{ version }}
-        env:
-          TEST: "1234"
-        state: started
-        ports:
-         - "3000:3000"
+    - community.general.docker_image:
+      name: backend
+      image: test:{{ version }}
+      env:
+        TEST: "1234"
+      state: started
+      ports:
+        - "3000:3000"
