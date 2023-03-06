@@ -10,14 +10,20 @@
       shell: cd "{{ project_path }}" &&  docker build -t test:"{{ version }}" .
 
     - name: Stop and remove old container
-      shell: docker kill $(docker ps -q)
-      ignore_errors: yes
+          docker_container:
+            name: backend
+            state: '{{ item }}'
+          with_items:
+            - stopped
+            - absent
+          ignore_errors: yes
+
 
     - community.docker.docker_container:
         name: backend
         image: test:{{ version }}
         env:
-          TEST: "1234"
+          TEST: "12345"
         state: started
         ports:
           - "3000:3000"
