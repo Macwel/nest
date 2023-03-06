@@ -6,7 +6,7 @@
           dest: "{{ project_path }}"
           version: main
 
-    - name: Build an image and push it to a private repo
+    - name: Build an image
       community.docker.docker_image:
         build:
           path: "{{ project_path }}"
@@ -14,7 +14,8 @@
         tag: "{{ version }}"
         source: build
 
-    - community.docker.docker_container:
+    - name: Remove and stopped containers
+      community.docker.docker_container:
         name: backend
         state: '{{ item }}'
       with_items:
@@ -22,8 +23,8 @@
         - absent
       ignore_errors: yes
 
-
-    - community.docker.docker_container:
+    - name: Start container
+      community.docker.docker_container:
         name: backend
         image: test:{{ version }}
         env:
