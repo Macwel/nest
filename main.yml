@@ -7,7 +7,7 @@
           version: main
 
     - name: Build container
-      shell: cd "{{ project_path }}" &&  docker build -t test:'{{version}}'' .
+      shell: cd "{{ project_path }}" &&  docker build -t test:"{{version}}" .
 
     - name: Start container
       shell: cd "{{ project_path }}" &&  docker run -dp 3000:3000 test:1.0
