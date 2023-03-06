@@ -13,12 +13,11 @@
       shell: docker kill $(docker ps -q)
       ignore_errors: yes
 
-    - community.docker.docker_image:
-        source: local
+    - community.docker.docker_container:
         name: backend
         image: test:{{ version }}
         env:
           TEST: "1234"
-        state: present
+        state: started
         ports:
           - "3000:3000"
