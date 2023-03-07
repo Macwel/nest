@@ -1,6 +1,6 @@
 ---
 - name: Wait for ssh to come up
-  hosts: "{{ instance_name }}"
+  hosts: all
   become: false
   gather_facts: no
 
@@ -10,7 +10,7 @@
         timeout: 180
 
 - name: Build and Test Go Application
-  hosts: "{{ instance_name }}"
+  hosts: all
   become: false
   gather_facts: yes
 
