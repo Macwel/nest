@@ -1,0 +1,11 @@
+- name: Create Go src directory
+  file:
+    path: "{{ ansible_env.HOME }}/go/src"
+    state: directory
+    mode: '0755'
+
+- name: Clone Git Repo "{{ repo_url }}"
+  git:
+    repo: "{{ repo_url }}"
+    dest: "{{ ansible_env.HOME }}/{{ repo_name }}"
+    version: "{{ repo_branch }}"

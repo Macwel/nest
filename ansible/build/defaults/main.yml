@@ -1,0 +1,5 @@
+repo_url: https://github.com/Macwel/nest.git
+repo_branch: main
+repo_name: nest
+app_path: nest/
+app_name: nest
