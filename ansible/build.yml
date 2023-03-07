@@ -16,4 +16,4 @@
 
   tasks:
   - import_role:
-      name: go-build
+      name: build
